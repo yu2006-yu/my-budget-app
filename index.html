@@ -1,67 +1,109 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>記帳本</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 500px;
-            margin: auto;
-            padding: 20px;
-        }
-        input, select, button {
-            display: block;
-            width: 100%;
-            margin: 10px 0;
-            padding: 10px;
-        }
-        .record {
-            border: 1px solid #ddd;
-            padding: 10px;
-            margin: 5px 0;
-            background-color: #f9f9f9;
-        }
-    </style>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>記帳本</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 40px;
+      background: #f4f8fc;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 50px;
+      padding: 20px;
+    }
+
+    .left-panel, .right-panel {
+      background-color: #eaf6ff;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 20px;
+      width: 300px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    input, select, button {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    .right-panel {
+      background-color: #f1fff0;
+      height: 500px;
+      overflow-y: auto;
+    }
+
+    .record {
+      border: 1px solid #c8e6c9;
+      padding: 10px;
+      margin-bottom: 10px;
+      background-color: #e6ffe6;
+      border-radius: 6px;
+    }
+
+    h2 {
+      margin-top: 0;
+      text-align: center;
+    }
+  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>簡單記帳本</h1>
+  <h1>簡單記帳本</h1>
 
-    <div class="container">
-        <!-- 左邊：表單 -->
-        <div class="left-panel">
-            <form id="recordForm">
-                <label for="date">日期：</label>
-                <input type="date" id="date" required>
+  <div class="container">
+    <!-- 左邊：表單 -->
+    <div class="left-panel">
+      <form id="recordForm">
+        <label for="date">日期：</label>
+        <input type="date" id="date" required>
 
-                <label for="category">類別：</label>
-                <select id="category">
-                    <option value="飲食">飲食</option>
-                    <option value="交通">交通</option>
-                    <option value="娛樂">娛樂</option>
-                    <option value="其他">其他</option>
-                </select>
+        <label for="category">類別：</label>
+        <select id="category">
+          <option value="飲食">飲食</option>
+          <option value="交通">交通</option>
+          <option value="娛樂">娛樂</option>
+          <option value="其他">其他</option>
+        </select>
 
-                <label for="amount">金額：</label>
-                <input type="number" id="amount" required>
+        <label for="amount">金額：</label>
+        <input type="number" id="amount" required>
 
-                <label for="note">備註：</label>
-                <input type="text" id="note">
+        <label for="note">備註：</label>
+        <input type="text" id="note">
 
-                <button type="submit">新增記帳</button>
-            </form>
-        </div>
-
-        <!-- 右邊：紀錄 -->
-        <div class="right-panel">
-            <h2>記帳紀錄</h2>
-            <div id="records"></div>
-        </div>
+        <button type="submit">新增記帳</button>
+      </form>
     </div>
 
-    <script src="script.js"></script>
-</body>
+    <!-- 右邊：紀錄 -->
+    <div class="right-panel">
+      <h2>記帳紀錄</h2>
+      <div id="records">
+        <!-- JS 會動態插入紀錄 -->
+      </div>
+    </div>
+  </div>
 
+  <script src="script.js"></script>
+</body>
 </html>
