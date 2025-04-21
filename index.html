@@ -1,77 +1,16 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>記帳本</title>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 40px;
-      background: #f4f8fc;
-    }
-
-    h1 {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    .container {
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      gap: 50px;
-      padding: 20px;
-    }
-
-    .left-panel, .right-panel {
-      background-color: #eaf6ff;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      padding: 20px;
-      width: 300px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-
-    input, select, button {
-      display: block;
-      width: 100%;
-      margin: 10px 0;
-      padding: 10px;
-      font-size: 16px;
-    }
-
-    .right-panel {
-      background-color: #f1fff0;
-      height: 500px;
-      overflow-y: auto;
-    }
-
-    .record {
-      border: 1px solid #c8e6c9;
-      padding: 10px;
-      margin-bottom: 10px;
-      background-color: #e6ffe6;
-      border-radius: 6px;
-    }
-
-    h2 {
-      margin-top: 0;
-      text-align: center;
-    }
-  </style>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <h1>簡單記帳本</h1>
 
   <div class="container">
-    <!-- 左邊：表單 -->
+    <!-- 左側表單 -->
     <div class="left-panel">
       <form id="recordForm">
         <label for="date">日期：</label>
@@ -95,15 +34,31 @@
       </form>
     </div>
 
-    <!-- 右邊：紀錄 -->
+    <!-- 右側支出區塊 -->
     <div class="right-panel">
-      <h2>記帳紀錄</h2>
-      <div id="records">
-        <!-- JS 會動態插入紀錄 -->
+      <div class="toggle-buttons">
+        <button onclick="showSection('records-section')">支出紀錄</button>
+        <button onclick="showSection('report-section')">支出報表</button>
+      </div>
+
+      <!-- 支出紀錄 -->
+      <div id="records-section" class="section">
+        <label for="monthFilter">篩選月份：</label>
+        <input type="month" id="monthFilter">
+        <h2>支出紀錄</h2>
+        <div id="records"></div>
+        <div id="total">總支出：0 元</div>
+      </div>
+
+      <!-- 支出報表 -->
+      <div id="report-section" class="section" style="display:none">
+        <h2>支出報表</h2>
+        <canvas id="reportChart"></canvas>
       </div>
     </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
